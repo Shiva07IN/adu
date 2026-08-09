@@ -222,13 +222,8 @@ function shiftQuote(dir) {
   qTimer = setInterval(() => goQ(qIdx + 1), 5200);
 }
 
-// ── Book Logic ──────────────────────────────
-const PAGES = ['cover', 'page1', 'page2', 'page3'];
-const TOTAL = PAGES.length;
-let curPage = -1;
-
-// Mobile face selectors (front/back of each page in order)
-const MOB_FACES = [
+// ── Book Logic ───────────────────────────────
+const FACES = [
   '#cover .cover-front',
   '#cover .pb-1',
   '#page1 .pf-2',
@@ -238,114 +233,97 @@ const MOB_FACES = [
   '#page3 .pf-4',
   '#page3 .pb-cover',
 ];
-let mobIdx = 0;
+const PAGE_NAMES = [
+  'Cover', '1 of 7', '2 of 7', '3 of 7',
+  '4 of 7', '5 of 7', '6 of 7', 'The End ✨'
+];
+let faceIdx = 0;
+let flipping = false;
 
-function getMobFaces() {
-  return MOB_FACES.map(s => document.querySelector(s)).filter(Boolean);
+function getFace(sel) { return document.querySelector(sel); }
+function allFaces() { return document.querySelectorAll('.book .page-front, .book .page-back'); }
+
+function resetAllFaces() {
+  allFaces().forEach(el =>
+    el.classList.remove('face-active','face-exit','face-exit-back','face-enter-back')
+  );
 }
 
-function applyMobFaces(idx) {
-  getMobFaces().forEach((f, i) => {
-    f.classList.remove('mob-active', 'mob-past');
-    if (i === idx) f.classList.add('mob-active');
-    else if (i < idx) f.classList.add('mob-past');
+function goFace(idx, dir /* 'fwd'|'bwd' */) {
+  if (flipping || idx === faceIdx) return;
+  if (idx < 0 || idx >= FACES.length) return;
+  flipping = true;
+
+  const prevEl = getFace(FACES[faceIdx]);
+  const nextEl = getFace(FACES[idx]);
+  const goingFwd = dir === 'fwd';
+
+  // 1. Set starting position of incoming face
+  if (nextEl) {
+    nextEl.classList.remove('face-active','face-exit','face-exit-back','face-enter-back');
+    if (!goingFwd) nextEl.classList.add('face-enter-back');
+    // force reflow so transition fires
+    nextEl.getBoundingClientRect();
+  }
+
+  // 2. Exit current face
+  if (prevEl) {
+    prevEl.classList.remove('face-active');
+    prevEl.classList.add(goingFwd ? 'face-exit' : 'face-exit-back');
+  }
+
+  // 3. Animate in next face
+  requestAnimationFrame(() => {
+    if (nextEl) {
+      nextEl.classList.remove('face-enter-back');
+      nextEl.classList.add('face-active');
+    }
+    faceIdx = idx;
+    updateBkControls();
   });
-  mobIdx = idx;
-}
 
-function clearMobFaces() {
-  getMobFaces().forEach(f => f.classList.remove('mob-active', 'mob-past'));
+  // 4. Clean up exit class after transition
+  setTimeout(() => {
+    if (prevEl) prevEl.classList.remove('face-exit','face-exit-back');
+    flipping = false;
+  }, 420);
 }
 
 function openBook() {
   const ov = $('bookOverlay');
   ov.classList.add('active');
   document.body.style.overflow = 'hidden';
-  resetPages();
-  clearMobFaces();
-  if (isMob()) {
-    mobIdx = 0;
-    requestAnimationFrame(() => applyMobFaces(0));
-  } else {
-    curPage = -1;
-    const bk = $('book-main');
-    bk.style.opacity = '0';
-    bk.style.transform = 'scale(0.84) rotateX(10deg)';
-    setTimeout(() => {
-      bk.style.transition = 'opacity .6s ease, transform .6s ease';
-      bk.style.opacity = '1';
-      bk.style.transform = 'scale(1) rotateX(0deg)';
-    }, 40);
-  }
-  updateBkControls();
+  resetAllFaces();
+  faceIdx = 0;
+  flipping = false;
+  // Slight delay so overlay fade-in completes first
+  setTimeout(() => {
+    const first = getFace(FACES[0]);
+    if (first) first.classList.add('face-active');
+    updateBkControls();
+  }, 120);
 }
 
 function closeBook() {
   $('bookOverlay').classList.remove('active');
   document.body.style.overflow = '';
-  resetPages();
-  clearMobFaces();
-  curPage = -1;
-  mobIdx = 0;
-}
-
-function resetPages() {
-  PAGES.forEach(id => {
-    const el = $(id);
-    if (el) el.classList.remove('turned', 'is-flipping');
-  });
+  setTimeout(resetAllFaces, 320);
+  faceIdx = 0;
+  flipping = false;
 }
 
 function nextPage() {
-  if (isMob()) {
-    if (mobIdx < MOB_FACES.length - 1) {
-      applyMobFaces(mobIdx + 1);
-      navigator.vibrate?.(18);
-    }
-  } else {
-    if (curPage < TOTAL - 1) {
-      curPage++;
-      const el = $(PAGES[curPage]);
-      if (el) {
-        el.classList.add('is-flipping', 'turned');
-        setTimeout(() => el.classList.remove('is-flipping'), 950);
-        navigator.vibrate?.(28);
-      }
-    }
-  }
-  updateBkControls();
+  if (faceIdx < FACES.length - 1) { goFace(faceIdx + 1, 'fwd'); navigator.vibrate?.(18); }
 }
-
 function prevPage() {
-  if (isMob()) {
-    if (mobIdx > 0) applyMobFaces(mobIdx - 1);
-  } else {
-    if (curPage >= 0) {
-      const el = $(PAGES[curPage]);
-      if (el) {
-        el.classList.add('is-flipping');
-        el.classList.remove('turned');
-        setTimeout(() => el.classList.remove('is-flipping'), 950);
-      }
-      curPage--;
-    }
-  }
-  updateBkControls();
+  if (faceIdx > 0) { goFace(faceIdx - 1, 'bwd'); navigator.vibrate?.(12); }
 }
 
 function updateBkControls() {
-  const prev = $('prevBtn');
-  const next = $('nextBtn');
-  const ind  = $('pageIndicator');
-  if (isMob()) {
-    prev.disabled = mobIdx <= 0;
-    next.disabled = mobIdx >= MOB_FACES.length - 1;
-    ind.textContent = mobIdx === 0 ? 'Cover' : mobIdx === MOB_FACES.length - 1 ? 'The End ✦' : `${mobIdx} / ${MOB_FACES.length - 1}`;
-  } else {
-    prev.disabled = curPage < 0;
-    next.disabled = curPage >= TOTAL - 1;
-    ind.textContent = curPage === -1 ? 'Cover' : curPage === TOTAL - 1 ? 'The End ✦' : `${curPage + 1} / ${TOTAL - 1}`;
-  }
+  const prev = $('prevBtn'), next = $('nextBtn'), ind = $('pageIndicator');
+  if (prev) prev.disabled = faceIdx <= 0;
+  if (next) next.disabled = faceIdx >= FACES.length - 1;
+  if (ind)  ind.textContent = PAGE_NAMES[faceIdx] || faceIdx;
 }
 
 // Keyboard

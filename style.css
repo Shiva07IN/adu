@@ -314,10 +314,8 @@ body {
 .mc-tag { display: inline-block; margin-top: 9px; font-size: 0.64rem; letter-spacing: 0.17em; text-transform: uppercase; background: rgba(179,136,255,0.1); border: 1px solid rgba(179,136,255,0.2); color: var(--sec); padding: 3px 10px; border-radius: 60px; }
 
 /* ═══════════════════════════════════
-   BOOK CTA + OVERLAY
+   BOOK OVERLAY
 ═══════════════════════════════════ */
-.book-cta { text-align: center; }
-.book-hint { margin-top: 14px; font-size: 0.8rem; color: var(--txt-sub); letter-spacing: 0.05em; }
 
 .book-overlay {
   position: fixed; inset: 0;
@@ -331,31 +329,54 @@ body {
 .book-overlay.active { display: flex; }
 
 .book-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-.book { position: relative; width: min(680px,90vw); height: min(480px,62vw); perspective: 2000px; }
+.book {
+  position: relative;
+  width: min(680px, 92vw);
+  height: clamp(360px, 56vw, 520px);
+}
 
-/* PAGES */
-.page {
-  position: absolute; width: 100%; height: 100%;
-  transform-origin: left center; transform-style: preserve-3d;
-  transition: transform 0.9s cubic-bezier(0.645,0.045,0.355,1);
-  cursor: pointer;
-}
-.page.turned { transform: rotateY(-180deg); }
+/* All page elements are containers only */
+.page { position: absolute; inset: 0; pointer-events: none; }
+
+/* All faces hidden by default */
 .page-front, .page-back {
-  position: absolute; width: 100%; height: 100%;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  border-radius: 4px 16px 16px 4px; padding: 38px; overflow: hidden;
+  position: absolute; inset: 0;
+  border-radius: 16px; padding: clamp(22px, 4vw, 42px);
+  overflow: hidden; pointer-events: none;
+  /* hidden state */
+  opacity: 0;
+  transform: translateX(48px) scale(0.97);
+  transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.34,1.06,0.64,1);
 }
-.page-back { transform: rotateY(180deg); border-radius: 16px 4px 4px 16px; }
-/* fold shadow */
-.page-front::after, .page-back::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  border-radius: inherit; opacity: 0; transition: opacity 0.38s ease; z-index: 20;
+
+/* Active face — visible */
+.page-front.face-active, .page-back.face-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  z-index: 3;
 }
-.page-front::after { background: linear-gradient(to left, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.08) 18%, transparent 50%); }
-.page-back::after  { background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 22%, transparent 48%); }
-.page.is-flipping .page-front::after,
-.page.is-flipping .page-back::after { opacity: 1; }
+
+/* Exiting face — slide out left */
+.page-front.face-exit, .page-back.face-exit {
+  opacity: 0;
+  transform: translateX(-48px) scale(0.97);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Entering from left (going backward) */
+.page-front.face-enter-back, .page-back.face-enter-back {
+  transform: translateX(-48px) scale(0.97);
+}
+
+/* Exiting to right (going backward) */
+.page-front.face-exit-back, .page-back.face-exit-back {
+  opacity: 0;
+  transform: translateX(48px) scale(0.97);
+  pointer-events: none;
+  z-index: 2;
+}
 
 /* page face colors */
 .cover-front { background: linear-gradient(145deg,#3d1a5c,#6b2070 30%,#4a1a8c 60%,#2d0d5c); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(80,0,140,0.5); display: flex; align-items: center; justify-content: center; }
@@ -426,20 +447,33 @@ body {
 }
 .bk-close:hover { background: rgba(255,0,127,0.28); transform: rotate(90deg) scale(1.1); }
 
-/* page content stagger animations */
-@keyframes cFadeUp { 0%{opacity:0;transform:translateY(18px) scale(0.98);} 100%{opacity:1;transform:translateY(0) scale(1);} }
-@keyframes iPopIn  { 0%{opacity:0;transform:translateX(-10px);} 100%{opacity:1;transform:translateX(0);} }
-@keyframes cSlideIn{ 0%{opacity:0;transform:translateY(11px) scale(0.97);} 100%{opacity:1;transform:translateY(0) scale(1);} }
-#cover .cover-front .cover-content > * { animation: cFadeUp 0.6s ease both; }
-#cover .cover-front .cover-content > *:nth-child(1){animation-delay:.3s;} #cover .cover-front .cover-content > *:nth-child(2){animation-delay:.45s;} #cover .cover-front .cover-content > *:nth-child(3){animation-delay:.6s;} #cover .cover-front .cover-content > *:nth-child(4){animation-delay:.75s;}
-.page.turned .page-back .pg-content > * { animation: cFadeUp 0.5s ease both; }
-.page.turned .page-back .pg-content > *:nth-child(1){animation-delay:.6s;} .page.turned .page-back .pg-content > *:nth-child(2){animation-delay:.72s;} .page.turned .page-back .pg-content > *:nth-child(3){animation-delay:.84s;} .page.turned .page-back .pg-content > *:nth-child(4){animation-delay:.96s;}
-.page.turned .page-back .fin-content > * { animation: cFadeUp 0.5s ease both; }
-.page.turned .page-back .fin-content > *:nth-child(1){animation-delay:.6s;} .page.turned .page-back .fin-content > *:nth-child(2){animation-delay:.72s;} .page.turned .page-back .fin-content > *:nth-child(3){animation-delay:.84s;} .page.turned .page-back .fin-content > *:nth-child(4){animation-delay:.96s;} .page.turned .page-back .fin-content > *:nth-child(5){animation-delay:1.08s;}
-.page.turned .page-back .ty-list li { animation: iPopIn 0.36s ease both; }
-.page.turned .page-back .ty-list li:nth-child(1){animation-delay:.72s;} .page.turned .page-back .ty-list li:nth-child(2){animation-delay:.80s;} .page.turned .page-back .ty-list li:nth-child(3){animation-delay:.88s;} .page.turned .page-back .ty-list li:nth-child(4){animation-delay:.96s;} .page.turned .page-back .ty-list li:nth-child(5){animation-delay:1.04s;} .page.turned .page-back .ty-list li:nth-child(6){animation-delay:1.12s;}
-.page.turned .page-back .mini-mem:nth-child(1){animation:cSlideIn .38s .74s ease both;} .page.turned .page-back .mini-mem:nth-child(2){animation:cSlideIn .38s .86s ease both;} .page.turned .page-back .mini-mem:nth-child(3){animation:cSlideIn .38s .98s ease both;}
-.page.turned .page-front .pr-item:nth-child(1){animation:iPopIn .36s .62s ease both;} .page.turned .page-front .pr-item:nth-child(2){animation:iPopIn .36s .72s ease both;} .page.turned .page-front .pr-item:nth-child(3){animation:iPopIn .36s .82s ease both;} .page.turned .page-front .pr-item:nth-child(4){animation:iPopIn .36s .92s ease both;}
+/* Face-in animation for active pages */
+@keyframes faceIn { 0%{opacity:0;transform:translateX(40px) scale(0.97);} 100%{opacity:1;transform:translateX(0) scale(1);} }
+.face-active .pg-content > *,
+.face-active .cover-content > *,
+.face-active .fin-content > * { animation: faceIn 0.42s ease both; }
+.face-active .pg-content > *:nth-child(1){animation-delay:.08s;}
+.face-active .pg-content > *:nth-child(2){animation-delay:.16s;}
+.face-active .pg-content > *:nth-child(3){animation-delay:.22s;}
+.face-active .pg-content > *:nth-child(4){animation-delay:.28s;}
+.face-active .cover-content > *:nth-child(1){animation-delay:.08s;}
+.face-active .cover-content > *:nth-child(2){animation-delay:.16s;}
+.face-active .cover-content > *:nth-child(3){animation-delay:.24s;}
+.face-active .cover-content > *:nth-child(4){animation-delay:.30s;}
+.face-active .ty-list li { animation: faceIn 0.36s ease both; }
+.face-active .ty-list li:nth-child(1){animation-delay:.10s;}
+.face-active .ty-list li:nth-child(2){animation-delay:.16s;}
+.face-active .ty-list li:nth-child(3){animation-delay:.22s;}
+.face-active .ty-list li:nth-child(4){animation-delay:.28s;}
+.face-active .ty-list li:nth-child(5){animation-delay:.34s;}
+.face-active .ty-list li:nth-child(6){animation-delay:.40s;}
+.face-active .mini-mem:nth-child(1){animation:faceIn .36s .12s ease both;}
+.face-active .mini-mem:nth-child(2){animation:faceIn .36s .20s ease both;}
+.face-active .mini-mem:nth-child(3){animation:faceIn .36s .28s ease both;}
+.face-active .pr-item:nth-child(1){animation:faceIn .36s .10s ease both;}
+.face-active .pr-item:nth-child(2){animation:faceIn .36s .18s ease both;}
+.face-active .pr-item:nth-child(3){animation:faceIn .36s .26s ease both;}
+.face-active .pr-item:nth-child(4){animation:faceIn .36s .34s ease both;}
 
 /* ═══════════════════════════════════
    QUOTES
