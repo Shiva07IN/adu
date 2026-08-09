@@ -35,7 +35,6 @@
       </div>
       <div class="hero-btns">
         <button class="btn-primary" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Explore Our Story <span>→</span></button>
-        <button class="btn-sec" onclick="openBook()">📖 Open the Book</button>
       </div>
     </div>
     <div class="hero-right">
@@ -253,127 +252,7 @@
 
 
 
-  <!-- Book Overlay -->
-  <div class="book-overlay" id="bookOverlay">
-    <div class="book-wrapper">
-      <div class="book" id="book-main">
 
-        <!-- COVER -->
-        <div class="page page-cover" id="cover">
-          <div class="page-front cover-front">
-            <div class="cover-content">
-              <div class="cover-orn">🎀 ✦ 🎀</div>
-              <h2 class="cover-title">A Letter<br/>To My<br/><em>Dear Adu</em></h2>
-              <div class="cover-heart">💗</div>
-              <p class="cover-sub">With All My Love &amp; Gratitude</p>
-              <div class="cover-orn">🎀 ✦ 🎀</div>
-            </div>
-          </div>
-          <div class="page-back pb-1">
-            <div class="pg-num">1</div>
-            <div class="pg-content">
-              <div class="pg-icon">🌸</div>
-              <h3 class="pg-title">Dear Adu...</h3>
-              <p class="pg-txt">Do you remember the day we first met? I honestly had no idea that moment would change my life. Something just clicked — like the universe had it all planned out for us.</p>
-              <p class="pg-txt">Since that day, Adu, you've been my constant — my sunshine on the cloudiest days, my laughter when I forgot how to smile.</p>
-              <div class="pg-quote"><em>"A friend is someone who knows all about you and still loves you."</em></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAGE 1 -->
-        <div class="page" id="page1">
-          <div class="page-front pf-2">
-            <div class="pg-num">2</div>
-            <div class="pg-content">
-              <div class="pg-icon">🎀</div>
-              <h3 class="pg-title">Thank You, Adu, For...</h3>
-              <ul class="ty-list">
-                <li>🌸 Always being there, no matter what</li>
-                <li>💬 Listening without judgment, always</li>
-                <li>😂 Making every moment so much funnier</li>
-                <li>🫂 Your hugs that genuinely fix everything</li>
-                <li>🌙 Late night talks that mean the world</li>
-                <li>✨ Believing in me when I couldn't</li>
-              </ul>
-            </div>
-          </div>
-          <div class="page-back pb-2">
-            <div class="pg-num">3</div>
-            <div class="pg-content">
-              <div class="pg-icon">💌</div>
-              <h3 class="pg-title">What Adu Means to Me</h3>
-              <p class="pg-txt">Adu, you are not just a friend. You are family I chose for myself. The kind of person who makes the ordinary feel magical just by being present in the room.</p>
-              <p class="pg-txt">Every memory we've made together is a treasure I hold in my heart forever. Adu, you've shown me what real friendship truly looks like.</p>
-              <div class="hearts-row">💗 🎀 💕 🎀 💗</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAGE 2 -->
-        <div class="page" id="page2">
-          <div class="page-front pf-3">
-            <div class="pg-num">4</div>
-            <div class="pg-content">
-              <div class="pg-icon">🫶</div>
-              <h3 class="pg-title">Memories with Adu</h3>
-              <div class="mini-mems">
-                <div class="mini-mem"><span class="mm-em">☕</span><p>Our trips that turned into the absolute best days</p></div>
-                <div class="mini-mem"><span class="mm-em">🎵</span><p>Singing together like absolutely no one's watching</p></div>
-                <div class="mini-mem"><span class="mm-em">🌙</span><p>Adu's midnight chats that felt like pure magic</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="page-back pb-3">
-            <div class="pg-num">5</div>
-            <div class="pg-content">
-              <div class="pg-icon">🌟</div>
-              <h3 class="pg-title">Adu Makes Me Better</h3>
-              <p class="pg-txt">Having Adu in my life has made me a genuinely better person. Her kindness is contagious, her strength is inspiring, and her friendship is one of the greatest gifts I've ever received.</p>
-              <div class="star-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-              <p class="pg-txt pg-italic">Adu deserves the absolute world — and I hope I can give her even a little piece of that back.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAGE 3 -->
-        <div class="page" id="page3">
-          <div class="page-front pf-4">
-            <div class="pg-num">6</div>
-            <div class="pg-content">
-              <div class="pg-icon">💐</div>
-              <h3 class="pg-title">My Promises to Adu</h3>
-              <p class="pg-txt">Adu, I promise to always be there for you — through every season, every storm, and every beautiful sunrise that follows.</p>
-              <div class="pr-list">
-                <div class="pr-item">🎀 Always in Adu's corner</div>
-                <div class="pr-item">✦ Ready with coffee &amp; tissues</div>
-                <div class="pr-item">✦ Adu's biggest cheerleader, always</div>
-                <div class="pr-item">🎀 Here for ALL of Adu's adventures</div>
-              </div>
-            </div>
-          </div>
-          <div class="page-back pb-cover">
-            <div class="fin-content">
-              <div class="fin-orn">🎀 ✦ 🎀</div>
-              <div class="fin-heart">💗</div>
-              <h3 class="fin-title">For Adu, With Love</h3>
-              <p class="fin-msg">Thank you for being YOU, Adu.<br/>The most wonderful, kind,<br/>incredible person I know.<br/><em>Forever grateful. Forever yours.</em></p>
-              <div class="fin-sig">— Always, with love 🌸</div>
-              <div class="fin-orn">🎀 ✦ 🎀</div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /book -->
-
-      <div class="book-controls">
-        <button class="bk-btn" id="prevBtn" onclick="prevPage()" disabled>← Prev</button>
-        <div class="bk-indicator" id="pageIndicator">Cover</div>
-        <button class="bk-btn" id="nextBtn" onclick="nextPage()">Next →</button>
-      </div>
-      <button class="bk-close" onclick="closeBook()" title="Close">✕</button>
-    </div>
-  </div>
 
   <div class="g-div"></div>
 
@@ -460,7 +339,6 @@
       <h2 class="ft-title">Forever, Adu 💗</h2>
       <p class="ft-sub">Made with love, just for Adu ✦</p>
       <div class="ft-btns">
-        <button onclick="openBook()">Open the Book 📖</button>
         <button onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Back to Top ↑</button>
       </div>
       <p class="ft-copy">🎀 Always &amp; Forever, Adu ✦</p>
