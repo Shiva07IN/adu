@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Adu 🎀💗</title>
+  <meta name="description" content="A deeply personal, premium website made with love for the most amazing Adu."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Hanken+Grotesk:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+  <div class="petals-wrap" id="petalsWrap"></div>
+
+
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-orbs">
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+      <div class="orb o3"></div>
+    </div>
+    <div class="hero-left">
+      <span class="hero-badge">🎀 A Gift From the Heart 🎀</span>
+      <h1 class="hero-h1">For My<br/><em>Adu 🎀</em></h1>
+      <p class="hero-p">The one who makes every ordinary moment feel like magic. The one who is simply irreplaceable — my Adu.</p>
+      <div class="hero-stats">
+        <div class="stat-pill"><span class="stat-n" id="dayCount">0</span><span class="stat-l">Days of Joy · Since Apr 17, 2016</span></div>
+        <div class="stat-pill"><span class="stat-n">∞</span><span class="stat-l">Memories</span></div>
+        <div class="stat-pill"><span class="stat-n" id="popCount">8,200,000,000</span><span class="stat-l">People on Earth · She’s 1 of Them</span></div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Explore Our Story <span>→</span></button>
+        <button class="btn-sec" onclick="openBook()">📖 Open the Book</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="heart-scene">
+        <div class="h-ring r1"></div>
+        <div class="h-ring r2"></div>
+        <div class="h-ring r3"></div>
+        <div class="h-orbitals">
+          <span class="h-dot d1">🎀</span>
+          <span class="h-dot d2">🌸</span>
+          <span class="h-dot d3">✦</span>
+          <span class="h-dot d4">💕</span>
+        </div>
+        <div class="h-heart">💗</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ STORY TIMELINE ═══ -->
+  <section class="sec" id="story">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 Adu's Journey 🎀</span>
+        <h2 class="sec-h2">The Story of <em>Us</em></h2>
+        <p class="sec-p">Every great friendship has a beginning, a middle — and a forever after. Ours is one of the best.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-spine"></div>
+
+        <div class="tl-item" data-side="left">
+          <div class="tl-dot">🌟</div>
+          <div class="tl-card gc">
+            <div class="tl-date">The Beginning</div>
+            <h3>The Day I Met Adu</h3>
+            <p>Something just clicked the moment I met her. Like the universe had been planning this all along. I had no idea that one ordinary day would bring such an extraordinary person into my life.</p>
+            <span class="tl-tag">Chapter I</span>
+          </div>
+        </div>
+
+        <div class="tl-item" data-side="right">
+          <div class="tl-dot">☕</div>
+          <div class="tl-card gc">
+            <div class="tl-date">First Real Talks</div>
+            <h3>Hours Felt Like Minutes</h3>
+            <p>Adu has this magical way of making you feel completely comfortable. We talked and talked — and I realized this girl was going to matter more than I could ever imagine.</p>
+            <span class="tl-tag">Chapter II</span>
+          </div>
+        </div>
+
+        <div class="tl-item" data-side="left">
+          <div class="tl-dot">🌙</div>
+          <div class="tl-card gc">
+            <div class="tl-date">The Deep Moments</div>
+            <h3>When Adu Became My Safe Place</h3>
+            <p>There are conversations that only happen when the world goes quiet. Adu became that place — warm, honest, never judging. Just fully, completely there.</p>
+            <span class="tl-tag">Chapter III</span>
+          </div>
+        </div>
+
+        <div class="tl-item" data-side="right">
+          <div class="tl-dot">🫂</div>
+          <div class="tl-card gc">
+            <div class="tl-date">Through Everything</div>
+            <h3>The Storms We Weathered Together</h3>
+            <p>Life got complicated. But Adu was there — not just for the highlight reel, but for all the messy, real, beautiful in-between moments too.</p>
+            <span class="tl-tag">Chapter IV</span>
+          </div>
+        </div>
+
+        <div class="tl-item" data-side="left">
+          <div class="tl-dot">✨</div>
+          <div class="tl-card gc">
+            <div class="tl-date">Better Because of Her</div>
+            <h3>How Adu Changed Me</h3>
+            <p>Knowing Adu has made me kinder, softer, braver, and more myself. She has this quiet way of bringing out the absolute best in everyone around her.</p>
+            <span class="tl-tag">Chapter V</span>
+          </div>
+        </div>
+
+        <div class="tl-item" data-side="right">
+          <div class="tl-dot">💗</div>
+          <div class="tl-card gc">
+            <div class="tl-date">Right Now & Always</div>
+            <h3>Where We Are Today</h3>
+            <p>Here. Together. Choosing each other every single day. This friendship with Adu is one I'll carry in my heart for the rest of my life — and I wouldn't have it any other way.</p>
+            <span class="tl-tag">Forever 🎀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ QUALITIES ═══ -->
+  <section class="sec" id="qualities">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 All About Adu 🎀</span>
+        <h2 class="sec-h2">Why Adu is <em>Extraordinary</em></h2>
+        <p class="sec-p">A tiny, incomplete list of everything that makes Adu completely one of a kind.</p>
+      </div>
+      <div class="q-grid">
+        <div class="q-card gc">
+          <div class="q-icon">🌸</div>
+          <h3>Adu's Unconditional Kindness</h3>
+          <p>Adu gives her kindness freely, without conditions. It just pours out of her naturally — everyone who meets her feels it immediately.</p>
+          <div class="q-glow"></div>
+        </div>
+        <div class="q-card gc">
+          <div class="q-icon">💬</div>
+          <h3>She Actually Listens</h3>
+          <p>Adu doesn't just hear you — she truly listens. She makes you feel completely seen and understood in a world that's always too loud and too busy.</p>
+          <div class="q-glow"></div>
+        </div>
+        <div class="q-card gc">
+          <div class="q-icon">😂</div>
+          <h3>Her Effortless Humor</h3>
+          <p>Adu's laughter is genuinely contagious. She finds the funny in everything and brings that joy to every single person around her.</p>
+          <div class="q-glow"></div>
+        </div>
+        <div class="q-card gc">
+          <div class="q-icon">⚡</div>
+          <h3>Adu's Quiet Strength</h3>
+          <p>She faces everything with this gentle, unshakeable strength that quietly inspires every single person lucky enough to know her.</p>
+          <div class="q-glow"></div>
+        </div>
+        <div class="q-card gc">
+          <div class="q-icon">✨</div>
+          <h3>She Makes Life Better</h3>
+          <p>Food tastes better, songs hit differently, and memories feel more alive when Adu is part of them. Every single time, without exception.</p>
+          <div class="q-glow"></div>
+        </div>
+        <div class="q-card gc">
+          <div class="q-icon">🫶</div>
+          <h3>She Believes in You</h3>
+          <p>Adu sees the best in everyone — and she believed in me when I had completely forgotten how to believe in myself. That gift is priceless.</p>
+          <div class="q-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ MEMORIES ═══ -->
+  <section class="sec" id="memories">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 Adu & Me 🎀</span>
+        <h2 class="sec-h2">Our <em>Memories</em></h2>
+        <p class="sec-p">Every moment shared with Adu is a treasure I hold close to my heart forever.</p>
+      </div>
+      <div class="mem-grid">
+        <div class="mc gc mc-wide">
+          <div class="mc-emoji">☕</div>
+          <div class="mc-info">
+            <h3>Random Trips with Adu</h3>
+            <p>The ones that became the absolute best days of the year. Hours with Adu that passed like minutes — full of laughs, stories, and memories I'll never forget.</p>
+            <span class="mc-tag">Favourite 🎀</span>
+          </div>
+        </div>
+        <div class="mc gc">
+          <div class="mc-emoji">🎵</div>
+          <div class="mc-info">
+            <h3>Singing with Adu</h3>
+            <p>Like absolutely no one is watching. Adu makes everything feel free and light and wonderful.</p>
+          </div>
+        </div>
+        <div class="mc gc">
+          <div class="mc-emoji">🌙</div>
+          <div class="mc-info">
+            <h3>Adu's Midnight Chats</h3>
+            <p>When the world sleeps and Adu's talking — those are the best conversations of my life.</p>
+          </div>
+        </div>
+        <div class="mc gc">
+          <div class="mc-emoji">😭</div>
+          <div class="mc-info">
+            <h3>Crying Together</h3>
+            <p>Over shows, over life — Adu is always there, somehow turning tears into laughter.</p>
+          </div>
+        </div>
+        <div class="mc gc mc-wide">
+          <div class="mc-emoji">🍕</div>
+          <div class="mc-info">
+            <h3>Every Meal with Adu</h3>
+            <p>Food just tastes better when Adu is across the table. It's a proven fact. Every time, without exception, without fail.</p>
+            <span class="mc-tag">Always 🌸</span>
+          </div>
+        </div>
+        <div class="mc gc">
+          <div class="mc-emoji">🌸</div>
+          <div class="mc-info">
+            <h3>Walking & Talking with Adu</h3>
+            <p>Those walks where we solved every problem just by being together and talking it through.</p>
+          </div>
+        </div>
+        <div class="mc gc">
+          <div class="mc-emoji">🎉</div>
+          <div class="mc-info">
+            <h3>Celebrating Adu</h3>
+            <p>Every milestone of Adu's felt exactly like my own. I'm so proud of her always.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Book Overlay -->
+  <div class="book-overlay" id="bookOverlay">
+    <div class="book-wrapper">
+      <div class="book" id="book-main">
+
+        <!-- COVER -->
+        <div class="page page-cover" id="cover">
+          <div class="page-front cover-front">
+            <div class="cover-content">
+              <div class="cover-orn">🎀 ✦ 🎀</div>
+              <h2 class="cover-title">A Letter<br/>To My<br/><em>Dear Adu</em></h2>
+              <div class="cover-heart">💗</div>
+              <p class="cover-sub">With All My Love &amp; Gratitude</p>
+              <div class="cover-orn">🎀 ✦ 🎀</div>
+            </div>
+          </div>
+          <div class="page-back pb-1">
+            <div class="pg-num">1</div>
+            <div class="pg-content">
+              <div class="pg-icon">🌸</div>
+              <h3 class="pg-title">Dear Adu...</h3>
+              <p class="pg-txt">Do you remember the day we first met? I honestly had no idea that moment would change my life. Something just clicked — like the universe had it all planned out for us.</p>
+              <p class="pg-txt">Since that day, Adu, you've been my constant — my sunshine on the cloudiest days, my laughter when I forgot how to smile.</p>
+              <div class="pg-quote"><em>"A friend is someone who knows all about you and still loves you."</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE 1 -->
+        <div class="page" id="page1">
+          <div class="page-front pf-2">
+            <div class="pg-num">2</div>
+            <div class="pg-content">
+              <div class="pg-icon">🎀</div>
+              <h3 class="pg-title">Thank You, Adu, For...</h3>
+              <ul class="ty-list">
+                <li>🌸 Always being there, no matter what</li>
+                <li>💬 Listening without judgment, always</li>
+                <li>😂 Making every moment so much funnier</li>
+                <li>🫂 Your hugs that genuinely fix everything</li>
+                <li>🌙 Late night talks that mean the world</li>
+                <li>✨ Believing in me when I couldn't</li>
+              </ul>
+            </div>
+          </div>
+          <div class="page-back pb-2">
+            <div class="pg-num">3</div>
+            <div class="pg-content">
+              <div class="pg-icon">💌</div>
+              <h3 class="pg-title">What Adu Means to Me</h3>
+              <p class="pg-txt">Adu, you are not just a friend. You are family I chose for myself. The kind of person who makes the ordinary feel magical just by being present in the room.</p>
+              <p class="pg-txt">Every memory we've made together is a treasure I hold in my heart forever. Adu, you've shown me what real friendship truly looks like.</p>
+              <div class="hearts-row">💗 🎀 💕 🎀 💗</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page" id="page2">
+          <div class="page-front pf-3">
+            <div class="pg-num">4</div>
+            <div class="pg-content">
+              <div class="pg-icon">🫶</div>
+              <h3 class="pg-title">Memories with Adu</h3>
+              <div class="mini-mems">
+                <div class="mini-mem"><span class="mm-em">☕</span><p>Our trips that turned into the absolute best days</p></div>
+                <div class="mini-mem"><span class="mm-em">🎵</span><p>Singing together like absolutely no one's watching</p></div>
+                <div class="mini-mem"><span class="mm-em">🌙</span><p>Adu's midnight chats that felt like pure magic</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="page-back pb-3">
+            <div class="pg-num">5</div>
+            <div class="pg-content">
+              <div class="pg-icon">🌟</div>
+              <h3 class="pg-title">Adu Makes Me Better</h3>
+              <p class="pg-txt">Having Adu in my life has made me a genuinely better person. Her kindness is contagious, her strength is inspiring, and her friendship is one of the greatest gifts I've ever received.</p>
+              <div class="star-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+              <p class="pg-txt pg-italic">Adu deserves the absolute world — and I hope I can give her even a little piece of that back.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div class="page" id="page3">
+          <div class="page-front pf-4">
+            <div class="pg-num">6</div>
+            <div class="pg-content">
+              <div class="pg-icon">💐</div>
+              <h3 class="pg-title">My Promises to Adu</h3>
+              <p class="pg-txt">Adu, I promise to always be there for you — through every season, every storm, and every beautiful sunrise that follows.</p>
+              <div class="pr-list">
+                <div class="pr-item">🎀 Always in Adu's corner</div>
+                <div class="pr-item">✦ Ready with coffee &amp; tissues</div>
+                <div class="pr-item">✦ Adu's biggest cheerleader, always</div>
+                <div class="pr-item">🎀 Here for ALL of Adu's adventures</div>
+              </div>
+            </div>
+          </div>
+          <div class="page-back pb-cover">
+            <div class="fin-content">
+              <div class="fin-orn">🎀 ✦ 🎀</div>
+              <div class="fin-heart">💗</div>
+              <h3 class="fin-title">For Adu, With Love</h3>
+              <p class="fin-msg">Thank you for being YOU, Adu.<br/>The most wonderful, kind,<br/>incredible person I know.<br/><em>Forever grateful. Forever yours.</em></p>
+              <div class="fin-sig">— Always, with love 🌸</div>
+              <div class="fin-orn">🎀 ✦ 🎀</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /book -->
+
+      <div class="book-controls">
+        <button class="bk-btn" id="prevBtn" onclick="prevPage()" disabled>← Prev</button>
+        <div class="bk-indicator" id="pageIndicator">Cover</div>
+        <button class="bk-btn" id="nextBtn" onclick="nextPage()">Next →</button>
+      </div>
+      <button class="bk-close" onclick="closeBook()" title="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ QUOTES ═══ -->
+  <section class="sec" id="quotes">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 Words for Adu 🎀</span>
+        <h2 class="sec-h2">Quotes That Feel <em>Like Adu</em></h2>
+      </div>
+      <div class="quotes-stage gc">
+        <div class="q-slide active"><div class="q-mark">&ldquo;</div><p class="q-text">A real friend is one who walks in when the rest of the world walks out.</p><span class="q-author">— Walter Winchell</span></div>
+        <div class="q-slide"><div class="q-mark">&ldquo;</div><p class="q-text">Friendship is the only cement that will ever hold the world together.</p><span class="q-author">— Woodrow Wilson</span></div>
+        <div class="q-slide"><div class="q-mark">&ldquo;</div><p class="q-text">True friendship comes when the silence between two people is comfortable.</p><span class="q-author">— David Tyson</span></div>
+        <div class="q-slide"><div class="q-mark">&ldquo;</div><p class="q-text">A good friend knows all your stories. A best friend helped you write them.</p><span class="q-author">— Unknown</span></div>
+        <div class="q-slide"><div class="q-mark">&ldquo;</div><p class="q-text">There are friends, there is family, and then there are friends that become family.</p><span class="q-author">— Unknown</span></div>
+        <div class="q-nav">
+          <button class="q-arr" onclick="shiftQuote(-1)">←</button>
+          <div class="q-dots" id="qDots"></div>
+          <button class="q-arr" onclick="shiftQuote(1)">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ PROMISES ═══ -->
+  <section class="sec" id="promises">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 For Adu, Always 🎀</span>
+        <h2 class="sec-h2">My <em>Promises</em> to Adu</h2>
+        <p class="sec-p">Things I will always do for Adu, no matter what life brings our way.</p>
+      </div>
+      <div class="pr-grid">
+        <div class="pr-card gc"><div class="pr-num">01</div><div class="pr-icon">🤝</div><h3>Always Show Up for Adu</h3><p>In person, online, in spirit — wherever Adu needs me, I will find a way to be there. Every time.</p></div>
+        <div class="pr-card gc"><div class="pr-num">02</div><div class="pr-icon">🫂</div><h3>Never Judge Adu</h3><p>Adu's mess, Adu's magic, Adu's in-between — I accept all of it, completely, without conditions, always.</p></div>
+        <div class="pr-card gc"><div class="pr-num">03</div><div class="pr-icon">🎉</div><h3>Celebrate Every Adu Win</h3><p>Small victories, huge milestones, everything in between — we celebrate every one of Adu's wins together.</p></div>
+        <div class="pr-card gc"><div class="pr-num">04</div><div class="pr-icon">💪</div><h3>Always Be Honest with Adu</h3><p>I'll tell Adu the truth even when it's hard, because that's what real love and real friendship always does.</p></div>
+        <div class="pr-card gc"><div class="pr-num">05</div><div class="pr-icon">🌟</div><h3>Keep Choosing Adu</h3><p>Every single day, I choose this friendship with Adu. And I'll keep choosing it for the rest of our lives.</p></div>
+        <div class="pr-card gc"><div class="pr-num">06</div><div class="pr-icon">☕</div><h3>Always Have Coffee Ready for Adu</h3><p>For all the conversations that need caffeination. Because the best talks with Adu deserve the good stuff.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ LETTER ═══ -->
+  <section class="sec sec-deep" id="letter">
+    <div class="wrap">
+      <div class="sec-hd">
+        <span class="sec-badge">🎀 For Adu's Eyes Only 🎀</span>
+        <h2 class="sec-h2">A Letter, <em>Just for Adu</em></h2>
+      </div>
+      <div class="letter gc">
+        <div class="letter-top">
+          <span class="letter-icon">💌</span>
+          <div class="letter-lines"><div></div><div></div><div></div></div>
+        </div>
+        <p class="letter-sal">To my dearest Adu 🎀,</p>
+        <div class="letter-body">
+          <p>I've tried to write this a hundred times and never quite found the words that do you justice, Adu. So I'm just going to say it as plainly and honestly as I can:</p>
+          <p><strong>Adu, you are one of the best things that has ever happened to me.</strong></p>
+          <p>Not because you're perfect — but because you're real. You're the person I can call at any hour. The person who laughs at my terrible jokes. The person who sits with me in my hardest moments without trying to fix everything — just being there, which turns out is the most important thing of all.</p>
+          <p>Adu, you've seen me at my worst and chose to stay. You've been there for my best moments and made them even better just by sharing them. That's not something I take for granted. Not even for a single second.</p>
+          <p>I hope you know how rare you are, Adu. How the world genuinely gets a little brighter when you're in it. How the people who have you in their corner are the luckiest people alive.</p>
+          <p>I'm one of them. And I'm so, so grateful.</p>
+          <p>This little website, this book, these words — they're just my small way of saying thank you. For being exactly who you are, Adu. For being my person.</p>
+          <p class="letter-close">With all my love, always &amp; forever,</p>
+          <p class="letter-sig">Yours, always 🎀🌸</p>
+        </div>
+        <div class="letter-seal">💗</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="g-div"></div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="ft-heart">🎀</div>
+      <h2 class="ft-title">Forever, Adu 💗</h2>
+      <p class="ft-sub">Made with love, just for Adu ✦</p>
+      <div class="ft-btns">
+        <button onclick="openBook()">Open the Book 📖</button>
+        <button onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Back to Top ↑</button>
+      </div>
+      <p class="ft-copy">🎀 Always &amp; Forever, Adu ✦</p>
+    </div>
+  </footer>
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" src="song.mp3" loop preload="auto"></audio>
+
+  <!-- MUTE BUTTON -->
+  <button class="mute-btn" id="muteBtn" onclick="toggleMute()" title="Mute / Unmute">🔊</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
