@@ -1,6 +1,3 @@
-# Keep song.mp3 out of the repo (personal file — add manually)
-song.mp3
-
 # OS
 .DS_Store
 Thumbs.db
