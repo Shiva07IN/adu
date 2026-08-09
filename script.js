@@ -352,46 +352,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 
-// ── Music: auto-play with volume fade-in ────────
+// ── Music Engine (Mobile & Desktop Compatible) ────────
 const audio = $('bgMusic');
 const muteBtn = $('muteBtn');
-let muted = false;
+let isAudioStarted = false;
+let isMuted = false;
 
 function toggleMute() {
-  muted = !muted;
-  audio.muted = muted;
-  muteBtn.textContent = muted ? '🔇' : '🔊';
+  if (!isAudioStarted) {
+    // Force start audio on button tap if not yet playing
+    startAudio(true);
+    return;
+  }
+  isMuted = !isMuted;
+  audio.muted = isMuted;
+  if (muteBtn) muteBtn.textContent = isMuted ? '🔇' : '🔊';
 }
 
-// Fade volume from 0 → 1 over ~3 seconds
 function fadeInVolume() {
-  audio.volume = 0;
-  const step = 0.02;
-  const interval = setInterval(() => {
-    if (audio.volume + step >= 1) {
-      audio.volume = 1;
-      clearInterval(interval);
-    } else {
-      audio.volume += step;
-    }
-  }, 60);
+  try {
+    audio.volume = 0.05;
+    let vol = 0.05;
+    const interval = setInterval(() => {
+      vol += 0.05;
+      if (vol >= 1) {
+        audio.volume = 1;
+        clearInterval(interval);
+      } else {
+        audio.volume = vol;
+      }
+    }, 80);
+  } catch (e) {
+    audio.volume = 1;
+  }
 }
 
-function startAudio() {
+function handleFirstInteraction() {
+  if (isAudioStarted || !audio) return;
   audio.play()
-    .then(fadeInVolume)
-    .catch(() => {
-      // Autoplay blocked — retry on first interaction
-      const retry = () => {
-        audio.play().then(fadeInVolume).catch(() => {});
-        document.removeEventListener('click',      retry);
-        document.removeEventListener('touchstart', retry);
-        document.removeEventListener('keydown',    retry);
-      };
-      document.addEventListener('click',      retry, { once: true });
-      document.addEventListener('touchstart', retry, { once: true });
-      document.addEventListener('keydown',    retry, { once: true });
-    });
+    .then(() => {
+      isAudioStarted = true;
+      if (muteBtn) muteBtn.textContent = isMuted ? '🔇' : '🔊';
+      fadeInVolume();
+      removeAudioUnlockListeners();
+    })
+    .catch(() => {});
+}
+
+function setupAudioUnlockListeners() {
+  const events = ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'];
+  events.forEach(evt => {
+    window.addEventListener(evt, handleFirstInteraction, { capture: true, passive: true });
+  });
+}
+
+function removeAudioUnlockListeners() {
+  const events = ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'];
+  events.forEach(evt => {
+    window.removeEventListener(evt, handleFirstInteraction, { capture: true });
+  });
+}
+
+function startAudio(forceStart) {
+  if (!audio) return;
+  if (isAudioStarted && !forceStart) return;
+
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        isAudioStarted = true;
+        if (muteBtn) muteBtn.textContent = isMuted ? '🔇' : '🔊';
+        fadeInVolume();
+        removeAudioUnlockListeners();
+      })
+      .catch(() => {
+        setupAudioUnlockListeners();
+      });
+  }
 }
 
 // ── DOMContentLoaded: boot everything ────────
